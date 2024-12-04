@@ -35,32 +35,21 @@ function Wheel() {
   const [winningSegment, setWinningSegment] = useState(null);
 
   const customPrizeRef = useRef(customPrize);
-  
-  // const handleFileUpload = async (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const formData = new FormData();
-  //     formData.append("file", file);
-  
-  //     try {
-  //       // Make the POST request using axios
-  //       const response = await axios.post("/upload-file", formData, {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data", // Important for file upload
-  //         },
-  //       });
-  
-  //       // Check if the response contains the expected 'segments' data
-  //       if (response.data && response.data.segments) {
-  //         setSegments(response.data.segments);
-  //       } else {
-  //         console.error("Error: Segments not found in response");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error uploading file:", error);
-  //     }
-  //   }
-  // };
+
+  const handleSpin = () => {
+    if (!prize) {
+      setErrorMessage("Please set up a prize before spinning the wheel.");
+      return;
+    }
+    setErrorMessage(""); 
+    setAudioSource("/winner.mp3");
+    const audio = document.querySelector('audio');
+    if (audio) {
+      audio.play();
+    } else {
+      console.log("Audio element not found.");
+    }
+  };
 
    const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -193,7 +182,7 @@ function Wheel() {
   
 
 
-  console.log("chosen winner", winningSegment);
+  console.log("prize", prize);
   return (
     <div
       id="wheelCircle"
@@ -232,18 +221,27 @@ function Wheel() {
         upDuration={50} 
         downDuration={4000}
         spinDuration={30000}
-        onSpinStart={() => {
+        onSpinStart={handleSpin}
+      />  
 
-          // Play the audio when the spin starts
-          setAudioSource("/winner.mp3");
-          const audio = document.querySelector('audio');
-          if (audio) {
-            audio.play();
-          } else {
-            console.log("Audio element not found.");
-          }
-        }}
-      />
+      {errorMessage && (
+        <div
+          style={{
+            position: "absolute",
+            top: "10px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            color: "red",
+            backgroundColor: "rgba(255,255,255,0.9)",
+            padding: "10px",
+            borderRadius: "10px",
+            zIndex: 10,
+            fontWeight: "bold",
+          }}
+        >
+          {errorMessage}
+        </div>
+      )}
 
       {(winner && prize) && (
         <div
