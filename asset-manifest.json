@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/wheel-of-prizes/static/css/main.e6c13ad2.css",
+    "main.js": "/wheel-of-prizes/static/js/main.f59619ad.js",
+    "static/js/453.ed3810f9.chunk.js": "/wheel-of-prizes/static/js/453.ed3810f9.chunk.js",
+    "index.html": "/wheel-of-prizes/index.html",
+    "main.e6c13ad2.css.map": "/wheel-of-prizes/static/css/main.e6c13ad2.css.map",
+    "main.f59619ad.js.map": "/wheel-of-prizes/static/js/main.f59619ad.js.map",
+    "453.ed3810f9.chunk.js.map": "/wheel-of-prizes/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.f59619ad.js"
+  ]
+}
